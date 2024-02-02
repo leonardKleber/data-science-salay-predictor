@@ -140,9 +140,9 @@
 | Expression | Numeric Representation |
 | :--- | :--- |
 | Entry-level | 0 |
-| Mid-level | 1 |
-| Senior-level | 2 |
-| Executive-level | 3 |
+| Executive-level | 1 |
+| Mid-level | 2 |
+| Senior-level | 3 |
 
 ## Employment Type
 | Expression | Numeric Representation |
@@ -344,6 +344,6 @@
 ## Company Size
 | Expression | Numeric Representation |
 | :--- | :--- |
-| Small | 0 |
+| Large | 0 |
 | Medium | 1 |
-| Large | 2 |
+| Small | 2 |
