@@ -11,7 +11,8 @@ def extract_data() -> list:
     with open('../dataset.csv', newline='') as file:
         for row in file:
             row_list = row.split(',')
-            row_list[len(row_list)-1] = row_list[len(row_list)-1].strip()
+            l = len(row_list)
+            row_list[l-1] = row_list[l-1].strip()
             rows.append(row_list)
     return rows
 
@@ -67,15 +68,29 @@ def map_expressions_to_numbers(feature_expressions: set) -> dict:
 
     The label y will be the respective salary in USD.
 """
-def transform_for_model(rows: list, feature_expressions: dict) -> [list, list]:
+def transform_for_model(rows: list, expressions: dict) -> [list, list]:
     # Create feature expression maps.
-    job_title_expression = map_expressions_to_numbers(feature_expressions['job_title'])
-    experience_level_expression = map_expressions_to_numbers(feature_expressions['experience_level'])
-    employment_type_expression = map_expressions_to_numbers(feature_expressions['employment_type'])
-    work_models_expression = map_expressions_to_numbers(feature_expressions['work_models'])
-    employee_residence_expression = map_expressions_to_numbers(feature_expressions['employee_residence'])
-    company_location_expression = map_expressions_to_numbers(feature_expressions['company_location'])
-    company_size_expression = map_expressions_to_numbers(feature_expressions['company_size'])
+    job_title_expression = map_expressions_to_numbers(
+        expressions['job_title']
+    )
+    experience_level_expression = map_expressions_to_numbers(
+        expressions['experience_level']
+    )
+    employment_type_expression = map_expressions_to_numbers(
+        expressions['employment_type']
+    )
+    work_models_expression = map_expressions_to_numbers(
+        expressions['work_models']
+    )
+    employee_residence_expression = map_expressions_to_numbers(
+        expressions['employee_residence']
+    )
+    company_location_expression = map_expressions_to_numbers(
+        expressions['company_location']
+    )
+    company_size_expression = map_expressions_to_numbers(
+        expressions['company_size']
+    )
 
     # Transform rows.
     feature_vectors = []
@@ -165,7 +180,7 @@ def provide_data_for_model() -> [list, list]:
     )
     unscaled_vectors = transform_for_model(
         rows=csv_rows, 
-        feature_expressions=feature_expressions
+        expressions=feature_expressions
     )
     scaled_feature_vectors = scale_features(
         feature_vectors=unscaled_vectors[0]
